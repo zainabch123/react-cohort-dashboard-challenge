@@ -10,7 +10,7 @@ export const commentContext = createContext();
 export default function PostItem({ post }) {
   const { allPosts, setAllPosts, loggedInUser, users } = useContext(appContext);
   const [comments, setComments] = useState([]);
-  let userInfo = { firstName: "", lastName: "" };
+  const [userInfo, setUserInfo] = useState(null)
   const [seePrevious, setSeePrevious] = useState(false);
   const [LinkText, setLinkText] = useState("Show Previous Comments");
 
@@ -24,9 +24,13 @@ export default function PostItem({ post }) {
 
   const sortedComments = comments.sort((a, b) => (a.id > b.id ? -1 : 1));
 
-  if (users.length !== 0) {
-    userInfo = users.find((user) => user.id === post.contactId);
-  }
+  useEffect(() => {
+    fetch(
+      `https://boolean-uk-api-server.fly.dev/zainabch123/contact/${post.contactId}`
+    )
+      .then((res) => res.json())
+      .then((data) => setUserInfo(data));
+  }, [post.contactId]);
 
   console.log("sorted comments", sortedComments);
 

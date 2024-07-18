@@ -33,23 +33,15 @@ export default function App() {
 
   console.log("logged In User:", loggedInUser);
 
-  useEffect(() => {
-    fetch("https://boolean-uk-api-server.fly.dev/zainabch123/contact")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
-  }, []);
-
-  console.log("users", users);
-
+  
   return (
     <appContext.Provider
       value={{
+        setLoggedInUser,
         loggedInUser,
         allPosts,
         setAllPosts,
         sortedPosts,
-        users,
-        setUsers,
       }}
     >
       <Header />

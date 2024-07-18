@@ -7,7 +7,7 @@ export default function CreatePost() {
   const [newPost, setNewPost] = useState({
     id: "",
     contactId: "",
-    title: "Default title",
+    title: "",
     content: "",
   });
 
@@ -29,7 +29,7 @@ export default function CreatePost() {
     setNewPost({
       id: "",
       contactId: "",
-      title: "Default title",
+      title: "",
       content: "",
     });
   }
@@ -43,12 +43,14 @@ export default function CreatePost() {
     });
   }
 
+  
     return (
       <>
       {loggedInUser && (
         <div className="create-post">
           <UserIcon userInfo={loggedInUser} />
           <form className="post-form" onSubmit={handleSubmit}>
+            <input type="text" id="title-input" name="title" placeholder="Title." value={newPost.title} onChange={handleInput} required></input>
             <input
               type="text"
               id="post-input"
@@ -56,6 +58,7 @@ export default function CreatePost() {
               placeholder="What's on your mind?"
               onChange={handleInput}
               value={newPost.content}
+              required
             ></input>
             <button className="post-submit" type="submit" onClick={function () {
               handleSubmit(event)

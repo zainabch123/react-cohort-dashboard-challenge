@@ -4,6 +4,7 @@ import Dashboard from "./components/Dashboard";
 import DisplayPost from "./components/DisplayPost";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import ViewProfile from "./components/ViewProfile";
 
 export const appContext = createContext();
 
@@ -56,6 +57,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/post/:id" element={<DisplayPost />} />
+        <Route path="/profile/:id" element= {<ViewProfile/>}/>
       </Routes>
     </appContext.Provider>
   );

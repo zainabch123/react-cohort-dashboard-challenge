@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: #000046;
 }
 
@@ -11,7 +11,6 @@
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: auto 1fr;
-  
 }
 
 header {
@@ -25,8 +24,8 @@ header {
 }
 
 .cohort-svg {
-height: 90px;
-padding: 20px;
+  height: 90px;
+  padding: 20px;
 }
 
 aside {
@@ -38,42 +37,48 @@ aside {
   text-align: center;
 }
 
-.home-icon, .profile-icon {
+.home-icon,
+.profile-icon {
   width: 100%;
   padding: 30px 50px;
 }
 
-.home-icon:hover, .profile-icon:hover {
+.home-icon:hover,
+.profile-icon:hover {
   background-color: #e6ebf5;
 }
 
-.home-icon img, .profile-icon img {
+.home-icon img,
+.profile-icon img {
   width: 35px;
   height: 35px;
-} 
-.posts-section, .display-post {
+}
+.posts-section,
+.display-post,
+.view-profile {
   display: grid;
   grid-template-rows: auto 1fr;
   overflow: scroll;
   scrollbar-gutter: auto;
   overflow-x: hidden;
   padding: 20px;
-  background-color: #F0F5FA;
+  background-color: #f0f5fa;
 }
 
 .post {
-    display: grid;
-    grid-auto-rows: max-content;
-    background-color: white;
-    margin-bottom: 20px;
-    padding: 20px 30px 20px 30px;
-    border-radius: 10px;
-    gap:10px;
+  display: grid;
+  grid-auto-rows: max-content;
+  background-color: white;
+  margin-bottom: 20px;
+  padding: 20px 30px 20px 30px;
+  border-radius: 10px;
+  gap: 10px;
 }
 
-.post-user, .comment-item {
-    display: grid;
-    grid-template-columns: auto 1fr;
+.post-user,
+.comment-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
 
 .comment-item {
@@ -102,7 +107,7 @@ aside {
   grid-template-columns: auto 1fr;
   align-items: center;
   background-color: white;
-  margin-bottom: 20px ;
+  margin-bottom: 20px;
   padding: 20px;
   border-radius: 10px;
 }
@@ -110,6 +115,7 @@ aside {
 .post-form {
   display: grid;
   grid-template-columns: 1fr max-content;
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .add-comment {
@@ -126,10 +132,17 @@ aside {
   border-radius: 10px;
 }
 
-#post-input, #comment-input {
+#post-input,
+#comment-input,
+#title-input {
   width: 100%;
   height: 55px;
   font-size: 1.1rem;
+}
+
+#post-input {
+  grid-row: 2 / span 1;
+  margin-top: 5px;
 }
 
 .post-form {
@@ -153,15 +166,14 @@ aside {
   padding: 5px;
 }
 
-
 .comment-form button img:hover {
   background-color: darkgray;
   opacity: 80%;
   cursor: pointer;
 }
 
-
-.create-post button {
+.create-post button,
+.profile-button {
   background-color: #000046;
   color: white;
   font-size: 1.2rem;
@@ -170,6 +182,14 @@ aside {
   border-radius: 10px;
   margin-left: 10px;
   border: none;
+}
+
+.profile-button {
+  height: 55px;
+}
+
+.create-post button {
+  grid-row: 2 / span 1;
 }
 
 .create-post button:hover {
@@ -206,4 +226,77 @@ a {
 
 .previous-comments {
   text-decoration: underline;
+}
+
+.user-img a {
+  padding: 15px;
+}
+
+.user-img:hover {
+  border: 2px solid #000046;
+}
+
+.profile-title {
+  font-size: 1.7rem;
+  margin-left: 10px;
+}
+
+.view-profile {
+  grid-template-columns: max-content;
+}
+
+.profile-card {
+  background-color: white;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.user-name {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  padding: 10px;
+}
+
+.profile-card h2 {
+  margin-left: 10px;
+  font-size: 1.9rem;
+}
+
+.profile-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+}
+
+.account-info,
+.address-info {
+  display: grid;
+  grid-template-rows: repeat(4, max-content);
+}
+
+.account-info h2,
+.address-info h2 {
+  margin-bottom: 10px;
+}
+
+.profile-form input {
+  width: 500px;
+  height: 55px;
+  font-size: 1.1rem;
+  display: grid;
+  margin-top: 10px;
+}
+
+.profile-form label {
+  margin: 10px;
+}
+
+.profile-submit {
+  display: grid;
+  justify-content: end;
+  padding: 10px;
 }

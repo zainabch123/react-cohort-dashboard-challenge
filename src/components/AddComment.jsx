@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
 import { appContext } from "../App";
+import { commentContext } from "./PostItem";
 import UserIcon from "./UserIcon";
 import SubmitIcon from "../assets/submit-icon.svg"
 
-export default function AddComment({ post, comments, setComments }) {
+export default function AddComment({ post }) {
   const { allPosts, setAllPosts, loggedInUser, sortedPosts } =
     useContext(appContext);
+  const {comments, setComments} = useContext(commentContext)
   const [newComment, setNewComment] = useState({
     id: "",
     postId: "",

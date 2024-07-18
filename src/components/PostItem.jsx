@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import { Link, useHref } from "react-router-dom";
+import { useState, useEffect, createContext, useContext } from "react";
+import { Link } from "react-router-dom";
 import AddComment from "./AddComment";
 import CommentList from "./CommentList";
 import UserIcon from "./UserIcon";
-import { useContext } from "react";
 import { appContext } from "../App";
+
+export const commentContext = createContext();
 
 export default function PostItem({ post }) {
   const { allPosts, setAllPosts, loggedInUser, users } = useContext(appContext);
@@ -29,7 +30,7 @@ export default function PostItem({ post }) {
   console.log("user info", userInfo);
 
   return (
-    <>
+    <commentContext.Provider value={{sortedComments, comments, setComments}}>
       {userInfo && (
         <li className="post">
           <div className="post-user">
@@ -47,14 +48,12 @@ export default function PostItem({ post }) {
             </div>
           </div>
           <div className="post-content">{post.content}</div>
-          <CommentList sortedComments={sortedComments} />
+          <CommentList />
           <AddComment
             post={post}
-            comments={comments}
-            setComments={setComments}
           />
         </li>
       )}
-    </>
+    </commentContext.Provider>
   );
 }

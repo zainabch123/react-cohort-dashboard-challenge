@@ -5,45 +5,52 @@ import DisplayPost from "./components/DisplayPost";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 
-export const appContext = createContext(); 
+export const appContext = createContext();
 
 export default function App() {
-   const [loggedInUser, setLoggedInUser] = useState(null);
-    const [allPosts, setAllPosts] = useState([]);
-    const [users, setUsers] = useState([])
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [allPosts, setAllPosts] = useState([]);
+  const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-      fetch("https://boolean-uk-api-server.fly.dev/zainabch123/post")
-        .then((res) => res.json())
-        .then((data) => setAllPosts(data));
-    }, []);
+  useEffect(() => {
+    fetch("https://boolean-uk-api-server.fly.dev/zainabch123/post")
+      .then((res) => res.json())
+      .then((data) => setAllPosts(data));
+  }, []);
 
-    console.log("all posts:", allPosts);
+  console.log("all posts:", allPosts);
 
-    const sortedPosts = allPosts.sort((a, b) => (a.id > b.id ? -1 : 1));
+  const sortedPosts = allPosts.sort((a, b) => (a.id > b.id ? -1 : 1));
 
-    console.log("sorted Posts", sortedPosts);
+  console.log("sorted Posts", sortedPosts);
 
-   useEffect(() => {
-     fetch("https://boolean-uk-api-server.fly.dev/zainabch123/contact/1")
-       .then((res) => res.json())
-       .then((data) => setLoggedInUser(data));
-   }, []);
+  useEffect(() => {
+    fetch("https://boolean-uk-api-server.fly.dev/zainabch123/contact/1")
+      .then((res) => res.json())
+      .then((data) => setLoggedInUser(data));
+  }, []);
 
-   console.log("logged In User:", loggedInUser);
+  console.log("logged In User:", loggedInUser);
 
-   useEffect(() => {
-     fetch("https://boolean-uk-api-server.fly.dev/zainabch123/contact")
-       .then((res) => res.json())
-       .then((data) => setUsers(data));
-   }, []);
+  useEffect(() => {
+    fetch("https://boolean-uk-api-server.fly.dev/zainabch123/contact")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
 
-   console.log("users", users);
-
-   
+  console.log("users", users);
 
   return (
-    <appContext.Provider value={{loggedInUser, allPosts, setAllPosts, sortedPosts, users, setUsers}}>
+    <appContext.Provider
+      value={{
+        loggedInUser,
+        allPosts,
+        setAllPosts,
+        sortedPosts,
+        users,
+        setUsers,
+      }}
+    >
       <Header />
       <Sidebar />
       <Routes>

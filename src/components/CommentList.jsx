@@ -1,6 +1,9 @@
 import CommentItem from "./CommentItem";
+import { commentContext } from "./PostItem";
+import { useContext } from "react";
 
-export default function CommentList({sortedComments}) {
+export default function CommentList() {
+  const {sortedComments} = useContext(commentContext)
    
     return (
       <div className="comment-section">

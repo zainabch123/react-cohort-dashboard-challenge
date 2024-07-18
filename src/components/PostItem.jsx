@@ -11,6 +11,8 @@ export default function PostItem({ post }) {
   const { allPosts, setAllPosts, loggedInUser, users } = useContext(appContext);
   const [comments, setComments] = useState([]);
   let userInfo = { firstName: "", lastName: "" };
+  const [seePrevious, setSeePrevious] = useState(false);
+  const [LinkText, setLinkText] = useState("Show Previous Comments");
 
   useEffect(() => {
     fetch(
@@ -20,17 +22,30 @@ export default function PostItem({ post }) {
       .then((data) => setComments(data));
   }, [post.id]);
 
-  console.log("comments", comments);
   const sortedComments = comments.sort((a, b) => (a.id > b.id ? -1 : 1));
 
   if (users.length !== 0) {
     userInfo = users.find((user) => user.id === post.contactId);
   }
 
-  console.log("user info", userInfo);
+  console.log("sorted comments", sortedComments);
+
+  const commentsToDisplay = sortedComments.slice(0, 3);
+
+  console.log("comments to display", commentsToDisplay);
+
+  function handleChange(event) {
+    setSeePrevious(!seePrevious)
+
+    setLinkText(LinkText === "Show Previous Comments" ? "Hide Previous Comments" : "Show Previous Comments")
+  }
+
+  console.log("see Previous Comments", seePrevious)
 
   return (
-    <commentContext.Provider value={{sortedComments, comments, setComments}}>
+    <commentContext.Provider
+      value={{ sortedComments, comments, setComments, commentsToDisplay, seePrevious }}
+    >
       {userInfo && (
         <li className="post">
           <div className="post-user">
@@ -48,10 +63,13 @@ export default function PostItem({ post }) {
             </div>
           </div>
           <div className="post-content">{post.content}</div>
+
+          {sortedComments.length > 3 && (
+            <Link className="previous-comments" onClick={handleChange}>{LinkText}</Link>
+          )}
           <CommentList />
-          <AddComment
-            post={post}
-          />
+
+          <AddComment post={post} />
         </li>
       )}
     </commentContext.Provider>

@@ -52,7 +52,7 @@ export default function AddComment({ post }) {
     });
   }
 
-  console.log("new comment", newComment);
+  // console.log("new comment", newComment);
 
 
   return (

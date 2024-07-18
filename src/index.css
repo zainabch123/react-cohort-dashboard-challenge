@@ -203,3 +203,7 @@ a {
 .user-info h3 a {
   color: #64648c;
 }
+
+.previous-comments {
+  text-decoration: underline;
+}
